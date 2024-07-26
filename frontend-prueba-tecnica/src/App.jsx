@@ -8,6 +8,7 @@ import Layout from './Layout';
 import Welcome from './components/Welcome/Welcome';
 
 function App() {
+  console.log(`API URL: ${import.meta.env.VITE_APP_API_URL}`);
   return (
     <Router>
       <Routes>

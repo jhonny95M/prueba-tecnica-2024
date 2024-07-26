@@ -1,14 +1,14 @@
 import React from 'react';
 import Modal from 'react-modal';
-import axios from 'axios';
 import './ConfirmDeactivateModal.css';
+import axiosInstance from '../../../api/axiosInstance';
 
 Modal.setAppElement('#root');
 
 const ConfirmDeactivateModal = ({ isOpen, onRequestClose, userId, onUserDeactivated }) => {
   const handleDeactivate = async () => {
     try {
-      await axios.delete(`http://localhost:7163/api/Users/${userId}`);
+      await axiosInstance.delete(`/Users/${userId}`);
       onUserDeactivated();
       onRequestClose();
     } catch (err) {

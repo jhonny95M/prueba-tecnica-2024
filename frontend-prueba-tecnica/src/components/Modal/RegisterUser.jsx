@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import axios from 'axios';
+import axiosInstance from '../../../api/axiosInstance';
 import './RegisterUser.css'
 
 Modal.setAppElement('#root');
@@ -26,7 +26,7 @@ const RegisterUser = ({ isOpen, onRequestClose, onUserRegistered }) => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        await axios.post('http://localhost:7163/api/Users', values);
+        await axiosInstance.post(`/Users`, values);
         onUserRegistered();
         onRequestClose();
       } catch (error) {
@@ -102,7 +102,7 @@ const RegisterUser = ({ isOpen, onRequestClose, onUserRegistered }) => {
           </select>
           {formik.touched.roleId && formik.errors.roleId ? <div className="error">{formik.errors.roleId}</div> : null}
         </div>
-        <button type="submit">Register</button>
+        <button className='btn-add' type="submit">Register</button>
       </form>
     </Modal>
   );

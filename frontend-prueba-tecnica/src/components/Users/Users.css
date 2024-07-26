@@ -1,0 +1,50 @@
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .filters input,
+  .filters select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .btn-list-add {
+    padding: 10px 20px;
+    background: #61dafb;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .btn-list-delete {
+    padding: 10px 20px;
+    background: #eb2d2d;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .btn-list-update {
+    padding: 10px 20px;
+    background: #28cf7c;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }

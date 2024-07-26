@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import axios from 'axios';
+import axiosInstance from '../../../api/axiosInstance';
 import './UpdateUser.css';
 
 Modal.setAppElement('#root');
@@ -27,7 +27,7 @@ const UpdateUser = ({ isOpen, onRequestClose, userId, onUserUpdated }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/Users/${userId}`);
+        const response = await axiosInstance.get(`/Users/${userId}`);
         setInitialValues({
           id: response.data.id,
           password: '',
@@ -52,7 +52,7 @@ const UpdateUser = ({ isOpen, onRequestClose, userId, onUserUpdated }) => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        await axios.put(`${process.env.REACT_APP_API_URL}/Users/${userId}`, values);
+        await axiosInstance.put(`/Users/${userId}`, values);
         onUserUpdated();
         onRequestClose();
       } catch (error) {
@@ -60,6 +60,7 @@ const UpdateUser = ({ isOpen, onRequestClose, userId, onUserUpdated }) => {
       }
     },
   });
+  
 
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} className="modal" overlayClassName="overlay">
@@ -129,7 +130,7 @@ const UpdateUser = ({ isOpen, onRequestClose, userId, onUserUpdated }) => {
           </label>
           {formik.touched.isActive && formik.errors.isActive ? <div className="error">{formik.errors.isActive}</div> : null}
         </div>
-        <button type="submit">Update</button>
+        <button className='btn-update' type="submit">Update</button>
       </form>
     </Modal>
   );

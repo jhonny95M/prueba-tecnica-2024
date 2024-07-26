@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi_Real_Plaza.Context;
 using WebApi_Real_Plaza.Dtos;
@@ -8,6 +10,7 @@ namespace WebApi_Real_Plaza.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class UsersController : ControllerBase
 {
     private readonly PostgressContext _context;
