@@ -1,0 +1,13 @@
+.vs/*
+**/Debug/**
+**/Release/**
+**/obj/**
+**/bin/**
+packages/*
+*.user
+*.dbmdl
+*.jfm
+*.csproj.user
+*.sqlproj.user
+.sonarqube/*
+.sonarlint/*
