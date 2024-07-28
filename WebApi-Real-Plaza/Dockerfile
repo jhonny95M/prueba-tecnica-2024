@@ -11,7 +11,7 @@ WORKDIR /src
 COPY ["WebApi-Real-Plaza.csproj", "."]
 RUN dotnet restore "./WebApi-Real-Plaza.csproj"
 COPY . .
-WORKDIR "/src/WebApi-Real-Plaza"
+WORKDIR "/src/."
 RUN dotnet build "./WebApi-Real-Plaza.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
