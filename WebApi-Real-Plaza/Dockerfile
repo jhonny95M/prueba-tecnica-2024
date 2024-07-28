@@ -8,8 +8,8 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["WebApi-Real-Plaza/WebApi-Real-Plaza.csproj", "WebApi-Real-Plaza/"]
-RUN dotnet restore "./WebApi-Real-Plaza/./WebApi-Real-Plaza.csproj"
+COPY ["WebApi-Real-Plaza.csproj", "."]
+RUN dotnet restore "./WebApi-Real-Plaza.csproj"
 COPY . .
 WORKDIR "/src/WebApi-Real-Plaza"
 RUN dotnet build "./WebApi-Real-Plaza.csproj" -c $BUILD_CONFIGURATION -o /app/build
