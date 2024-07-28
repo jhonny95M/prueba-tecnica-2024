@@ -1,0 +1,35 @@
+# Usa una imagen base de Node.js para compilar la aplicación
+FROM node:20.10.0 AS build
+
+# Establece el directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Copia los archivos de tu proyecto al contenedor
+COPY . .
+
+# Instala Bun
+RUN npm install -g bun@1.1.21
+
+# Instala las dependencias usando Bun
+RUN bun install
+
+# Compila la aplicación para producción
+RUN bun run build
+
+# Usa una imagen base más ligera para servir la aplicación
+FROM node:20.10.0-alpine AS runtime
+
+# Establece el directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Copia los archivos compilados desde la etapa de compilación
+COPY --from=build /app/dist ./dist
+
+# Instala un servidor estático (por ejemplo, serve) para servir la aplicación
+RUN npm install -g serve
+
+# Exponer el puerto que utilizará la aplicación
+EXPOSE 5000
+
+# Comando para ejecutar la aplicación
+CMD ["serve", "-s", "dist", "-l", "5000"]
